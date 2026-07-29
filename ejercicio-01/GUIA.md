@@ -1,39 +1,44 @@
-# Ejercicio 01 — Reconocer y modificar HTML básico
+# Ejercicio 01 — Reconocer, modificar y completar HTML básico
 
 ## Fase 1: Leer y explicar ✅
+4/5 correctas.
 
-Ya la hiciste. 4/5 correctas — sabías más de lo que pensabas.
+## Fase 2: Modificar ✅
+4/4 TODOs resueltos. Tu solución quedó en `index.html`.
 
-## Fase 2: Modificar (acá estás)
+## Fase 3: Completar (acá estás)
 
-Abrí `index.html`. Vas a ver **4 comentarios `<!-- TODO -->`** distribuidos en el archivo. Cada uno te pide un cambio pequeño.
+Trabajás en un **archivo nuevo**: `tostado.html`.
 
-### Los 4 TODOs
+El archivo ya tiene el `<!DOCTYPE>`, el `<html>`, el `<head>` y el `<body>` armados. Adentro del body hay contenido pero **sin las etiquetas** — vas a encontrar 6 bloques `<!-- COMPLETAR N -->` que te dicen qué tenés que envolver o agregar.
 
-1. Mejorar el `alt` de la imagen.
-2. Agregar un ítem más a la lista.
-3. Hacer que el link de Letterboxd abra en pestaña nueva.
-4. Agregar un `<h2>` y un `<p>` al final del body.
+### Los 6 completares
+
+1. Convertir un texto en el título principal.
+2. Convertir un texto en un párrafo.
+3. Agregar una imagen (con `src` y `alt`).
+4. Convertir 3 líneas en una lista **no ordenada**.
+5. Convertir 4 líneas en una lista **ordenada** (tag nuevo — te dejé una pista).
+6. Escribir un párrafo con un link que abre en pestaña nueva.
 
 ### Cómo trabajar
 
-1. Editá los cambios en VS Code, uno por uno.
-2. Cuando termines los 4, **borrá los comentarios `<!-- TODO -->`** (ya no hacen falta).
-3. Abrí `index.html` en el navegador para chequear que se ve bien y que el link nuevo se abre en otra pestaña.
+1. Editá `tostado.html` en VS Code.
+2. Cuando termines, borrá los `<!-- COMPLETAR -->` (ya cumplieron su función).
+3. Abrí `tostado.html` en el navegador y chequeá que se ve razonable.
 4. Commit y push:
    ```bash
-   git add ejercicio-01/index.html
-   git commit -m "Ejercicio 01 fase 2: TODOs resueltos"
+   git add ejercicio-01/tostado.html
+   git commit -m "Ejercicio 01 fase 3: tostado.html completado"
    git push
    ```
-5. Avisame acá que ya pusheaste y hago `git pull` para revisar.
+5. Avisame y hago pull para revisar.
 
 ### Reglas
 
-- No hace falta que uses CSS todavía. Solo HTML.
-- Si te trabás con alguno de los TODOs, decime cuál y lo desatamos juntos — no busques en internet.
-- Si te olvidás de algún atajo de git, preguntá antes de improvisar (es preferible confirmar que romper algo del historial).
+- Sin CSS todavía.
+- Sin buscar en internet — quiero ver qué reconocés.
+- Si te trabás con algún completar, decime cuál. Sin drama.
 
-## Fase 3 y 4
-
-Vienen después. Cuando termines la Fase 2 avanzamos.
+## Fase 4
+Después de esta. Vas a armar algo desde cero — sin plantilla ni pistas.
