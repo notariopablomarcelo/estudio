@@ -28,5 +28,5 @@ const availableProducts = products
 console.log('Productos disponibles:');
 availableProducts.forEach((line) => console.log(`- ${line}`));
 
-const totalStock = products.reduce((acum, {price, stock}) => acum + (price * stock)), 0);
+const totalStock = products.reduce((acum, {price, stock}) => acum + (price * stock), 0);
 console.log(`Valor total de stock: $${totalStock}`);
