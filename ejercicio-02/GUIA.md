@@ -1,34 +1,48 @@
 # Ejercicio 02 — JavaScript moderno (parte 1)
 
-Refresco de sintaxis y patrones que vas a usar todo el tiempo en Angular (o cualquier framework moderno). El código de `script.js` está en el mismo estilo que vas a ver en un componente Angular real.
+Refresco de sintaxis y patrones que vas a usar todo el tiempo en Angular (o cualquier framework moderno).
 
 ## Cómo correr el código
 
-1. Abrí `ejercicio-02/index.html` en el navegador (doble clic).
-2. Abrí DevTools con **F12** (o click derecho → Inspeccionar).
-3. Andá a la pestaña **Console**.
-4. Vas a ver el output de los `console.log`.
+1. Abrí `ejercicio-02/index.html` en el navegador.
+2. **F12** → pestaña **Console**.
+3. Vas a ver el output de los `console.log`.
 
-No necesitás Node ni instalar nada — el JavaScript corre directo en el navegador.
+## Fase 1: Leer y explicar ✅
 
-## Fase 1: Leer y explicar (sin escribir código)
+5/5 con matices. Distinguiste bien const/let a nivel de referencia (nailed lo de mutabilidad interna), agarraste destructuring, filter/map/chain y arrow function. Los conceptos nuevos que sumamos: rest vs spread (misma sintaxis, roles opuestos), inmutabilidad como patrón, y el `this` léxico de las arrow functions.
 
-Abrí `script.js` y respondé en el chat:
+## Fase 2: Modificar (acá estás)
 
-1. ¿Qué diferencia hay entre `const` y `let`? ¿Cuándo usarías uno y cuándo el otro?
-2. ¿Qué hace `({ price, ...rest })` en el parámetro de la función `withTax`?
-3. Dentro del `return` de esa misma función aparece `{ ...rest, price, ... }`. ¿Qué hace el `...rest` acá adentro? ¿Es lo mismo que en el parámetro o algo distinto?
-4. Explicá qué hace la cadena `products.filter(inStock).map(withTax).map(formatLine)`. ¿En qué orden se ejecuta cada método y qué recibe/devuelve cada uno?
-5. ¿Qué es una arrow function y en qué se diferencia de una `function` tradicional? Si no te acordás la diferencia técnica, contame al menos qué te sugiere leer `(x) => x * 2`.
+Abrí `script.js`. Vas a encontrar **4 TODOs** distribuidos en el archivo. Cada uno introduce o ejercita un concepto:
+
+1. **Agregar un producto** — repaso de object literal.
+2. **Modificar el filtro `inStock`** — combinación de condiciones con `&&`.
+3. **Sumar valor total de stock con `.reduce()`** — método nuevo, tenés pista.
+4. **Ordenar por precio sin mutar el array** — método `.sort()` + inmutabilidad + posición correcta en la cadena.
+
+Los 3 primeros son directos. El 4 requiere pensar dónde meter el sort en la cadena.
+
+## Cómo trabajar
+
+1. Editá `script.js` en VS Code.
+2. Después de cada TODO resuelto, refrescá el navegador (`index.html`) y mirá la consola para verificar que sigue funcionando.
+3. Cuando termines los 4, borrá los comentarios `// TODO ...` y las pistas (ya no hacen falta).
+4. Commit y push:
+   ```bash
+   git add ejercicio-02/script.js
+   git commit -m "Ejercicio 02 fase 2: TODOs resueltos"
+   git push
+   ```
+5. Avisame acá y hago pull para revisar.
 
 ## Reglas
 
-- Sin buscar en internet.
-- Si no te acordás algo, decilo tal cual. Es diagnóstico, no examen.
-- No hace falta ejecutar el script para responder — con leerlo alcanza. Pero si te ayuda a visualizar, corrélo y mirá la salida en la consola.
+- Sin autocompletar (Copilot apagado).
+- Sin buscar en internet — con las pistas que están en el archivo debería alcanzar. Si no, preguntame acá.
+- Si te trabás con alguno, decime cuál y lo desatamos juntos.
 
 ## Después
 
-- **Fase 2**: modificar el código.
-- **Fase 3**: completar huecos.
-- Saltamos Fase 4 (misma decisión que en Ejercicio 01: el boilerplate no vale la pena).
+- **Fase 3**: completar huecos (rellenar funciones parcialmente escritas).
+- Fase 4 saltada.
