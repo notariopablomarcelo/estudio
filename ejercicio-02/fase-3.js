@@ -89,7 +89,7 @@ const getProductPrice = (id) => {
 const applyDiscount = (product, percentage) => {
   // PISTA — la forma general de "copia con una propiedad modificada" es:
   //   { ...objetoOriginal, propiedad: nuevoValor }
-  return { ...product, price: product.price * (1 - percentage/100) }
+  return { ...product, price: Math.round(product.price * (1 - percentage/100)) }
 };
 
 
