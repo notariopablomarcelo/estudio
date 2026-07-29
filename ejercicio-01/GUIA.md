@@ -1,21 +1,39 @@
-# Ejercicio 01 — Reconocer HTML básico
+# Ejercicio 01 — Reconocer y modificar HTML básico
 
-## Fase 1: Leer y explicar (sin escribir código)
+## Fase 1: Leer y explicar ✅
 
-Abrí `index.html` en VS Code. También podés abrirlo en el navegador haciendo doble clic para ver cómo se ve.
+Ya la hiciste. 4/5 correctas — sabías más de lo que pensabas.
 
-Después contame en el chat, en tus propias palabras:
+## Fase 2: Modificar (acá estás)
 
-1. ¿Qué hace la línea `<!DOCTYPE html>`?
-2. ¿Cuál es la diferencia entre lo que va en `<head>` y lo que va en `<body>`?
-3. Elegí 3 etiquetas que ves dentro del `<body>` y decime qué hace cada una.
-4. ¿Para qué sirven los atributos `src` y `alt` de la etiqueta `<img>`?
-5. ¿Qué pasa si hago clic sobre el texto "Letterboxd" en el navegador? ¿Qué parte del código lo hace posible?
+Abrí `index.html`. Vas a ver **4 comentarios `<!-- TODO -->`** distribuidos en el archivo. Cada uno te pide un cambio pequeño.
 
-## Reglas del juego
+### Los 4 TODOs
 
-- No hace falta escribir código todavía.
-- Si algo no te suena, decí "no me acuerdo" o "no sé". Ninguna respuesta te descalifica — es diagnóstico, no examen.
-- No busques en internet — quiero saber qué reconocés en frío.
+1. Mejorar el `alt` de la imagen.
+2. Agregar un ítem más a la lista.
+3. Hacer que el link de Letterboxd abra en pestaña nueva.
+4. Agregar un `<h2>` y un `<p>` al final del body.
 
-Cuando termines de responder las 5, avanzamos a la Fase 2 (modificar).
+### Cómo trabajar
+
+1. Editá los cambios en VS Code, uno por uno.
+2. Cuando termines los 4, **borrá los comentarios `<!-- TODO -->`** (ya no hacen falta).
+3. Abrí `index.html` en el navegador para chequear que se ve bien y que el link nuevo se abre en otra pestaña.
+4. Commit y push:
+   ```bash
+   git add ejercicio-01/index.html
+   git commit -m "Ejercicio 01 fase 2: TODOs resueltos"
+   git push
+   ```
+5. Avisame acá que ya pusheaste y hago `git pull` para revisar.
+
+### Reglas
+
+- No hace falta que uses CSS todavía. Solo HTML.
+- Si te trabás con alguno de los TODOs, decime cuál y lo desatamos juntos — no busques en internet.
+- Si te olvidás de algún atajo de git, preguntá antes de improvisar (es preferible confirmar que romper algo del historial).
+
+## Fase 3 y 4
+
+Vienen después. Cuando termines la Fase 2 avanzamos.
