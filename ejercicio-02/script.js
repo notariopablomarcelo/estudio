@@ -28,19 +28,5 @@ const availableProducts = products
 console.log('Productos disponibles:');
 availableProducts.forEach((line) => console.log(`- ${line}`));
 
-const totalStock = products.reduce((acum, elem) => acum + elem.stock, 0);
+const totalStock = products.reduce((acum, {price, stock}) => acum + (price * stock)), 0);
 console.log(`Valor total de stock: $${totalStock}`);
-
-// TODO 4: modificá la cadena de `availableProducts` para que los productos
-// aparezcan ORDENADOS por precio (de menor a mayor).
-//
-// IMPORTANTE: el método `.sort()` MUTA el array original. Para respetar la
-// regla de inmutabilidad que vimos, hacé una copia con spread ANTES de sortear:
-//   [...unArray].sort(...)
-//
-// PISTA — sort recibe una función comparadora:
-//   .sort((a, b) => a.price - b.price)   // ascendente
-//   .sort((a, b) => b.price - a.price)   // descendente
-//
-// Pensá bien EN QUÉ PUNTO de la cadena tenés que meter el sort.
-// (Después de `formatLine` no sirve — para entonces ya son strings.)
