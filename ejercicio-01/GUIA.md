@@ -1,44 +1,64 @@
-# Ejercicio 01 — Reconocer, modificar y completar HTML básico
+# Ejercicio 01 — Reconocer, modificar, completar y producir HTML básico
 
 ## Fase 1: Leer y explicar ✅
 4/5 correctas.
 
 ## Fase 2: Modificar ✅
-4/4 TODOs resueltos. Tu solución quedó en `index.html`.
+4/4 TODOs. Solución en `index.html`.
 
-## Fase 3: Completar (acá estás)
+## Fase 3: Completar ✅
+6/6 (con una corrección menor sobre bloque vs inline). Solución en `tostado.html`.
 
-Trabajás en un **archivo nuevo**: `tostado.html`.
+## Fase 4: Producir desde cero (acá estás)
 
-El archivo ya tiene el `<!DOCTYPE>`, el `<html>`, el `<head>` y el `<body>` armados. Adentro del body hay contenido pero **sin las etiquetas** — vas a encontrar 6 bloques `<!-- COMPLETAR N -->` que te dicen qué tenés que envolver o agregar.
+No hay esqueleto, no hay pistas, no hay huecos. Vas a crear un archivo nuevo y armarlo completo vos.
 
-### Los 6 completares
+### Archivo a crear
 
-1. Convertir un texto en el título principal.
-2. Convertir un texto en un párrafo.
-3. Agregar una imagen (con `src` y `alt`).
-4. Convertir 3 líneas en una lista **no ordenada**.
-5. Convertir 4 líneas en una lista **ordenada** (tag nuevo — te dejé una pista).
-6. Escribir un párrafo con un link que abre en pestaña nueva.
+`ejercicio-01/mi-pagina.html`
 
-### Cómo trabajar
+**Importante**: creá el archivo vos mismo desde VS Code (`New File`) — no esperes que yo lo cree. Parte del ejercicio es acostumbrarse a arrancar de cero.
 
-1. Editá `tostado.html` en VS Code.
-2. Cuando termines, borrá los `<!-- COMPLETAR -->` (ya cumplieron su función).
-3. Abrí `tostado.html` en el navegador y chequeá que se ve razonable.
-4. Commit y push:
-   ```bash
-   git add ejercicio-01/tostado.html
-   git commit -m "Ejercicio 01 fase 3: tostado.html completado"
-   git push
-   ```
-5. Avisame y hago pull para revisar.
+### Tema
+
+**Vos elegís**. Puede ser sobre cualquier cosa que te interese:
+- Un lugar que te guste
+- Un libro / banda / película / disco / juego
+- Tu barrio, tu ciudad
+- Un hobby
+- Un evento próximo
+- Lo que se te ocurra
+
+No importa el contenido, importa la estructura HTML.
+
+### Requisitos (checklist)
+
+La página tiene que incluir **todos** estos elementos:
+
+- [ ] `<!DOCTYPE html>` correcto
+- [ ] Estructura `<html>` → `<head>` → `<body>` bien anidada
+- [ ] `<meta charset="UTF-8">` dentro del `<head>`
+- [ ] Un `<title>` significativo (aparece en la pestaña del navegador)
+- [ ] Un `<h1>` como título principal
+- [ ] Al menos un `<h2>` como subtítulo
+- [ ] Al menos **dos** `<p>` distintos
+- [ ] Una `<img>` con `src` y `alt` descriptivo (podés usar `https://placehold.co/WIDTHxHEIGHT?text=Tema` como placeholder si no tenés imagen)
+- [ ] Una lista — `<ul>` o `<ol>`, la que tenga más sentido para tu tema
+- [ ] Al menos un `<a>` que abra en **pestaña nueva**, con `rel="noopener noreferrer"`
 
 ### Reglas
 
-- Sin CSS todavía.
-- Sin buscar en internet — quiero ver qué reconocés.
-- Si te trabás con algún completar, decime cuál. Sin drama.
+- **Nada de CSS todavía**. Solo HTML puro. Va a verse sin estilos, y está bien.
+- **Sin autocompletar**. Si Copilot volvió a activarse, apagalo antes de empezar.
+- **Sin buscar en internet** cómo escribir cada tag. Escribí de memoria. Si no te acordás cómo se hace algo, decime acá y te doy la mínima pista.
+- Si te olvidás de una etiqueta y no aparece en tu página, no importa — cuando pushees te lo marco.
 
-## Fase 4
-Después de esta. Vas a armar algo desde cero — sin plantilla ni pistas.
+### Flujo git
+
+```bash
+git add ejercicio-01/mi-pagina.html
+git commit -m "Ejercicio 01 fase 4: pagina desde cero"
+git push
+```
+
+Cuando termines, avisame y hago pull para revisar contra el checklist.
