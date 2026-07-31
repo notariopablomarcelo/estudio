@@ -4,7 +4,7 @@ Primer contacto real con TypeScript. Tomamos el mismo código que ya escribiste 
 
 ## Setup (ya hecho)
 
-- `package.json` con TypeScript y ts-node como devDependencies.
+- `package.json` con TypeScript y tsx como devDependencies.
 - `tsconfig.json` con `strict: true` y `noImplicitAny: true` (para que TS sea intolerante con lo no tipado — es el modo que se usa en cualquier proyecto profesional, Angular incluido).
 - `fase-3.ts` con el código a tipar.
 
@@ -17,10 +17,10 @@ Desde `ejercicio-03/`:
 npx tsc
 
 # Ejecutar directamente el .ts
-npx ts-node fase-3.ts
+npx tsx fase-3.ts
 ```
 
-Mientras haya errores de tipo, `npx tsc` va a fallar y `ts-node` también. Cuando todo esté tipado correctamente, vas a ver el output esperado en consola.
+Mientras haya errores de tipo, `npx tsc` va a fallar y `tsx` también. Cuando todo esté tipado correctamente, vas a ver el output esperado en consola.
 
 ## Los 5 TIPOs para completar
 
@@ -36,7 +36,7 @@ Los retornos podés dejarlos que TS los infiera (más idiomático). Solo tipá l
 
 1. Abrí `fase-3.ts` en VS Code. Vas a ver puntitos rojos y líneas onduladas — cada uno es un error de tipo. Pasá el mouse por encima para leer la queja.
 2. Resolvé uno por uno. Después de cada cambio, corré `npx tsc` desde una terminal en la carpeta para ver qué queda pendiente.
-3. Cuando `npx tsc` no muestre errores, corré `npx ts-node fase-3.ts` para verificar que el script sigue funcionando igual que en JS.
+3. Cuando `npx tsc` no muestre errores, corré `npx tsx fase-3.ts` para verificar que el script sigue funcionando igual que en JS.
 4. Borrá los comentarios `// COMPLETAR` y `// TIPO N` cuando termines.
 5. Commit y push:
    ```bash
