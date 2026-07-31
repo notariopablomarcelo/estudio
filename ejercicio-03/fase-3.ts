@@ -16,11 +16,14 @@
 // Después descomentá el tipo `Producto[]` del array `products` de abajo.
 // -----------------------------------------------------------------------------
 interface Producto {
-  // COMPLETAR
+  id: number;
+  name: string;
+  price: number;
+  stock: number;
 }
 
 
-const products /* : Producto[] */ = [
+const products : Producto[] = [
   { id: 1, name: 'Café en grano',            price: 4500,  stock: 12 },
   { id: 2, name: 'Molinillo manual',         price: 18000, stock: 3  },
   { id: 3, name: 'Filtros V60 (paquete)',    price: 2200,  stock: 0  },
@@ -33,7 +36,7 @@ const products /* : Producto[] */ = [
 // TIPO 2: tipá el parámetro `name`.
 // El retorno lo puede inferir TS solo, no hace falta anotarlo.
 // -----------------------------------------------------------------------------
-const findProductByName = (name) => {
+const findProductByName = (name: string) => {
   return products.find(product => product.name === name);
 };
 
@@ -42,7 +45,7 @@ const findProductByName = (name) => {
 // TIPO 3: tipá el parámetro `id`.
 // Igual que arriba: el retorno se infiere.
 // -----------------------------------------------------------------------------
-const getProductPrice = (id) => {
+const getProductPrice = (id: number) => {
   const product = products.find(p => p.id === id);
   return product?.price ?? 0;
 };
@@ -52,7 +55,7 @@ const getProductPrice = (id) => {
 // TIPO 4: tipá `product` y `percentage`.
 // PISTA — para `product` usá la interface que definiste arriba.
 // -----------------------------------------------------------------------------
-const applyDiscount = (product, percentage) => {
+const applyDiscount = (product: Producto, percentage: number) => {
   return { ...product, price: Math.round(product.price * (1 - percentage/100)) };
 };
 
@@ -61,7 +64,7 @@ const applyDiscount = (product, percentage) => {
 // TIPO 5: tipá los dos parámetros.
 // PISTA — el primer parámetro NO es un producto suelto, es un array.
 // -----------------------------------------------------------------------------
-const getBudgetProducts = (products, maxPrice) => {
+const getBudgetProducts = (products: Producto[], maxPrice: number) => {
   return products
     .filter(p => p.price <= maxPrice)
     .map(p => p.name);
