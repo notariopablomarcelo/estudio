@@ -1,0 +1,43 @@
+main {
+  font-family: system-ui, -apple-system, sans-serif;
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  color: #222;
+  line-height: 1.5;
+}
+
+h1 {
+  margin-bottom: 0.25rem;
+}
+
+.contador {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.contador strong {
+  font-size: 1.4rem;
+  color: #c2410c;
+}
+
+.botones {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 1px solid #999;
+  background: #fff;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #f3f3f3;
+}
