@@ -31,3 +31,4 @@ Objetivo: reactivar Angular (venía de v12, apuntando a la versión moderna) con
 - [`ejercicio-01/`](ejercicio-01/) — HTML básico (fases 1-3 completas)
 - [`ejercicio-02/`](ejercicio-02/) — JavaScript moderno (fases 1-3 completas)
 - [`ejercicio-03/`](ejercicio-03/) — TypeScript: tipar código existente
+- [`ejercicio-04/`](ejercicio-04/) — Primer proyecto Angular (v22, standalone, signals)
