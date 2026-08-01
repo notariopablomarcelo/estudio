@@ -5,14 +5,48 @@
   <section class="contador">
     <h2>Contador con signals</h2>
     <p>Valor actual: <strong>{{ counter() }}</strong></p>
-
     <p>Estado: <em>{{ estado() }}</em></p>
 
     <div class="botones">
       <button (click)="decrement()">−1</button>
       <button (click)="reset()">reset</button>
       <button (click)="increment()">+1</button>
-      <button (click)="double()">x2</button>
+      <button (click)="double()">×2</button>
+    </div>
+  </section>
+
+  <section class="productos">
+    <h2>Productos</h2>
+
+    <!--
+      TODO 1: iterá el signal `productos()` con @for.
+      Sintaxis nueva:
+
+        @for (p of productos(); track p.id) {
+          <div class="producto">
+            <strong>{{ p.name }}</strong> — ${{ p.price }}
+            <span>({{ p.stock }} en stock)</span>
+          </div>
+        } @empty {
+          <p>No hay productos.</p>
+        }
+
+      El @empty se muestra si la colección está vacía.
+      El track p.id le dice a Angular cómo identificar cada item para
+      redibujar solo lo que cambió (obligatorio en @for).
+    -->
+
+    <!--
+      TODO 2: arriba del @for, agregá una línea con @if que muestre la CANTIDAD:
+        @if (productos().length > 0) {
+          <p>Tenés {{ productos().length }} producto(s).</p>
+        }
+      Si la lista está vacía, esa línea no aparece.
+    -->
+
+    <div class="botones">
+      <button (click)="agregarProducto()">+ Agregar</button>
+      <button (click)="vaciarProductos()">Vaciar</button>
     </div>
   </section>
 </main>

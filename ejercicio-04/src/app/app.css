@@ -41,3 +41,25 @@ button {
 button:hover {
   background: #f3f3f3;
 }
+
+.productos {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.producto {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.producto:last-of-type {
+  border-bottom: none;
+}
+
+.producto span {
+  color: #666;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+}
