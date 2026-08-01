@@ -1,4 +1,10 @@
 <main>
+  <!--
+    TODO 2: modificá este <h1> para que además del título salude a `nombre`.
+    Ejemplo (podés inventarte otro):
+      <h1>Hola {{ nombre() }} — {{ title() }}</h1>
+    Lo que importa: que uses interpolación con el signal `nombre`.
+  -->
   <h1>{{ title() }}</h1>
   <p>Bienvenido a Angular v22 con signals y standalone components.</p>
 
@@ -6,10 +12,20 @@
     <h2>Contador con signals</h2>
     <p>Valor actual: <strong>{{ counter() }}</strong></p>
 
+    <!--
+      TODO 3: agregá acá una línea que muestre el estado del contador usando
+      el computed `estado`. Ejemplo:
+        <p>Estado: <em>{{ estado() }}</em></p>
+    -->
+
     <div class="botones">
       <button (click)="decrement()">−1</button>
       <button (click)="reset()">reset</button>
       <button (click)="increment()">+1</button>
+      <!--
+        TODO 1: agregá acá un botón más con texto "×2" que llame a double() en el click.
+        Copiá el formato de los botones de arriba.
+      -->
     </div>
   </section>
 </main>
