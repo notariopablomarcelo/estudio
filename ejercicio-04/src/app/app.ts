@@ -1,4 +1,5 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { Contador } from './contador/contador';
 
 interface Producto {
   id: number;
@@ -9,19 +10,16 @@ interface Producto {
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [Contador],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
   protected readonly title = signal('Mi primera app Angular');
-  protected readonly counter = signal(0);
   protected readonly nombre = signal('Pablo');
-  protected readonly estado = computed(() => {
-    if (this.counter() > 0) return 'positivo';
-    if (this.counter() < 0) return 'negativo';
-    return 'cero';
-  });
+
+  // Guardamos el último valor que emitió el hijo <app-contador>.
+  protected readonly ultimoValorContador = signal(0);
 
   protected readonly productos = signal<Producto[]>([
     { id: 1, name: 'Café en grano',            price: 4500,  stock: 12 },
@@ -31,20 +29,9 @@ export class App {
     { id: 5, name: 'Café molido',              price: 5000,  stock: 20 },
   ]);
 
-  increment() {
-    this.counter.update(n => n + 1);
-  }
-
-  decrement() {
-    this.counter.update(n => n - 1);
-  }
-
-  reset() {
-    this.counter.set(0);
-  }
-
-  double() {
-    this.counter.update(n => n * 2);
+  // Handler del output del hijo. El $event que llega es el number emitido.
+  onCounterChange(value: number) {
+    this.ultimoValorContador.set(value);
   }
 
   agregarProducto() {

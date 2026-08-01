@@ -1,33 +1,32 @@
 <main>
   <h1>Hola {{ nombre() }} - {{ title() }}</h1>
   <p>Bienvenido a Angular v22 con signals y standalone components.</p>
+  <p>El contador está en <strong>{{ ultimoValorContador() }}</strong>.</p>
 
-  <section class="contador">
-    <h2>Contador con signals</h2>
-    <p>Valor actual: <strong>{{ counter() }}</strong></p>
-    <p>Estado: <em>{{ estado() }}</em></p>
-
-    <div class="botones">
-      <button (click)="decrement()">−1</button>
-      <button (click)="reset()">reset</button>
-      <button (click)="increment()">+1</button>
-      <button (click)="double()">×2</button>
-    </div>
-  </section>
+  <!--
+    Usamos el componente hijo <app-contador>:
+    - `label="Contador con signals"` es una property binding (string estático).
+    - `(valueChange)="onCounterChange($event)"` es event binding — cada vez
+      que el hijo emite, corre este handler con el valor emitido en $event.
+  -->
+  <app-contador
+    label="Contador con signals"
+    (valueChange)="onCounterChange($event)">
+  </app-contador>
 
   <section class="productos">
     <h2>Productos</h2>
 
-    @if(productos().length > 0) {
-      <p>Tenés {{ productos().length }} productos</p>
+    @if (productos().length > 0) {
+      <p>Tenés {{ productos().length }} producto(s).</p>
     }
 
-    @for(p of productos(); track p.id) {
+    @for (p of productos(); track p.id) {
       <div class="producto">
-        <strong>{{ p.name }}</strong> - ${{ p.price }}
+        <strong>{{ p.name }}</strong> — ${{ p.price }}
         <span>{{ p.stock }} en stock</span>
       </div>
-    }@empty {
+    } @empty {
       <p>No hay productos.</p>
     }
 

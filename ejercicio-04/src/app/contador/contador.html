@@ -1,0 +1,12 @@
+<section class="contador">
+  <h2>{{ label() }}</h2>
+  <p>Valor actual: <strong>{{ counter() }}</strong></p>
+  <p>Estado: <em>{{ estado() }}</em></p>
+
+  <div class="botones">
+    <button (click)="decrement()">−1</button>
+    <button (click)="reset()">reset</button>
+    <button (click)="increment()">+1</button>
+    <button (click)="double()">×2</button>
+  </div>
+</section>
