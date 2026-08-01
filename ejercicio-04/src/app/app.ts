@@ -1,5 +1,4 @@
-import { Component, signal } from '@angular/core';
-// TODO 3: agregá `computed` a este import (viene del mismo paquete).
+import { Component, signal, computed } from '@angular/core';
 
 @Component({
   selector: 'app-root',
