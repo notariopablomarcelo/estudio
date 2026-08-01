@@ -18,31 +18,18 @@
   <section class="productos">
     <h2>Productos</h2>
 
-    <!--
-      TODO 1: iterá el signal `productos()` con @for.
-      Sintaxis nueva:
+    @if(productos().length > 0) {
+      <p>Tenés {{ productos().length }} productos</p>
+    }
 
-        @for (p of productos(); track p.id) {
-          <div class="producto">
-            <strong>{{ p.name }}</strong> — ${{ p.price }}
-            <span>({{ p.stock }} en stock)</span>
-          </div>
-        } @empty {
-          <p>No hay productos.</p>
-        }
-
-      El @empty se muestra si la colección está vacía.
-      El track p.id le dice a Angular cómo identificar cada item para
-      redibujar solo lo que cambió (obligatorio en @for).
-    -->
-
-    <!--
-      TODO 2: arriba del @for, agregá una línea con @if que muestre la CANTIDAD:
-        @if (productos().length > 0) {
-          <p>Tenés {{ productos().length }} producto(s).</p>
-        }
-      Si la lista está vacía, esa línea no aparece.
-    -->
+    @for(p of productos(); track p.id) {
+      <div class="producto">
+        <strong>{{ p.name }}</strong> - ${{ p.price }}
+        <span>{{ p.stock }} en stock</span>
+      </div>
+    }@empty {
+      <p>No hay productos.</p>
+    }
 
     <div class="botones">
       <button (click)="agregarProducto()">+ Agregar</button>
