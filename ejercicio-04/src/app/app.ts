@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { Contador } from './contador/contador';
+import { ListaProductos } from './lista-productos/lista-productos';
 
 interface Producto {
   id: number;
@@ -10,7 +11,7 @@ interface Producto {
 
 @Component({
   selector: 'app-root',
-  imports: [Contador],
+  imports: [Contador, ListaProductos],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
