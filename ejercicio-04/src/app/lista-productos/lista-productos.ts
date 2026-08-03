@@ -14,7 +14,7 @@ interface Producto {
   styleUrl: './lista-productos.css',
 })
 export class ListaProductos {
-  readonly productos = input<Producto[]>();
+  readonly productos = input.required<Producto[]>();
   
   readonly add = output();
   readonly clear = output();
