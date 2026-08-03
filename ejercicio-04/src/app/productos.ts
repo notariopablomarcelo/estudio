@@ -32,9 +32,6 @@ export class ProductosService {
   }
 
   eliminar(id: number) {
-    const nuevos = this.productos().filter(p => p.id != id);
-    this.productos.set([...nuevos]);
-
-    //this.productos.update(list => [...list.filter(p => p.id != id)]);
+    this.productos.update(list => list.filter(p => p.id !== id));
   }
 }
