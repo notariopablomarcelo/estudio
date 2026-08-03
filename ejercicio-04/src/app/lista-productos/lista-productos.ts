@@ -19,4 +19,11 @@ export class ListaProductos {
   readonly add = output();
   readonly clear = output();
 
+  onAgregar() {
+    this.add.emit();
+  }
+
+  onVaciar() {
+    this.clear.emit();
+  }
 }
