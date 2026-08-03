@@ -1,11 +1,5 @@
-import { Component, input, output } from '@angular/core';
-
-interface Producto {
-  id: number;
-  name: string;
-  price: number;
-  stock: number;
-}
+import { Component, inject } from '@angular/core';
+import { ProductosService } from '../productos';
 
 @Component({
   selector: 'app-lista-productos',
@@ -14,16 +8,6 @@ interface Producto {
   styleUrl: './lista-productos.css',
 })
 export class ListaProductos {
-  readonly productos = input.required<Producto[]>();
-  
-  readonly add = output();
-  readonly clear = output();
-
-  onAgregar() {
-    this.add.emit();
-  }
-
-  onVaciar() {
-    this.clear.emit();
-  }
+  // Ya no hay input ni output. El estado y las acciones viven en el servicio.
+  protected readonly svc = inject(ProductosService);
 }

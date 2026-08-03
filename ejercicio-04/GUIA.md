@@ -9,105 +9,91 @@ Angular v22, TypeScript, standalone components.
 - ✅ **Fase 1** — Contador con signals.
 - ✅ **Fase 2** — `nombre`, `computed`, botón ×2.
 - ✅ **Fase 3** — Nuevo control flow (`@for`, `@if`).
-- 👉 **Fase 4a** — Componentes hijos: extraje el contador a `<app-contador>`.
-- ⏳ **Fase 4b** — Vas a crear vos `<app-lista-productos>` siguiendo el mismo patrón.
+- ✅ **Fase 4a/b** — Componentes hijos: `<app-contador>` y `<app-lista-productos>`.
+- 👉 **Fase 5a** — Extraer estado a un servicio (`ProductosService`).
+- ⏳ **Fase 5b** — Sumar un método `eliminar(id)` y un botón por producto.
 
 
-## Fase 4a: Contador extraído a componente hijo
+## Fase 5a: Extraer estado a un servicio
 
 Lo que hice:
 
-1. Ejecuté `npx ng generate component contador --skip-tests` desde `ejercicio-04/`. El CLI generó tres archivos en `src/app/contador/`.
-2. Moví toda la lógica del contador ahí adentro.
-3. Le agregué un **input** y un **output** al componente.
-4. En `App` importé `Contador`, lo usé con `<app-contador>` en el template, y agregué el handler del evento.
+1. `npx ng generate service productos --skip-tests` desde `ejercicio-04/`.
+2. Escribí el servicio en `src/app/productos.ts`:
+   - `interface Producto` (exportada — ahora es la única fuente).
+   - `@Injectable({ providedIn: 'root' })` — singleton global.
+   - Signal `productos` con los 5 items iniciales.
+   - Métodos `agregar()` y `vaciar()`.
+3. `App` quedó "adelgazada": ya no tiene el signal `productos` ni los métodos. Solo orquesta el saludo, el contador y renderiza `<app-lista-productos>`.
+4. `App.html` ya no le pasa nada al hijo: `<app-lista-productos></app-lista-productos>`.
+5. `ListaProductos` inyecta el servicio con `inject()` y consume signals/métodos directamente. Sin `input()` ni `output()`.
 
-Abrí los archivos en este orden mientras leés:
-- `src/app/contador/contador.ts`
-- `src/app/contador/contador.html`
-- `src/app/app.ts`
-- `src/app/app.html`
+Abrí los archivos en este orden:
+
+- `src/app/productos.ts` — el servicio.
+- `src/app/app.ts` y `src/app/app.html` — cómo quedó el padre.
+- `src/app/lista-productos/lista-productos.ts` y `.html` — cómo cambia el hijo.
 
 
-## Lo nuevo: `input()`, `output()`, `effect()`
+## Lo nuevo
 
-**`input()`** — declara una propiedad que **el padre le pasa al hijo**.
+**`@Injectable({ providedIn: 'root' })`**
 
-```ts
-readonly label = input<string>('Contador con signals');
-```
+Marca la clase como servicio y le dice a Angular: "creá una única instancia (singleton) al arrancar la app, y compartila con cualquiera que la pida". No hace falta declararla en ningún módulo.
 
-- Es un signal (se lee con `label()`).
-- Es de **solo lectura** dentro del hijo. El padre es quien "manda".
-- El `<string>` es el tipo. El `'...'` es el default si el padre no pasa nada.
+**`inject()`**
 
-**`output()`** — declara un evento que **el hijo emite hacia el padre**.
-
-```ts
-readonly valueChange = output<number>();
-```
-
-- No es un signal. Tiene un método `.emit(valor)` para disparar el evento.
-- El `<number>` es el tipo del valor que se emite.
-
-**`effect()`** — corre una función cada vez que cambia algún signal que se lee adentro.
+Alternativa moderna al constructor DI. Se puede usar como inicializador de un campo, dentro de signals, computed, effects, etc.
 
 ```ts
-constructor() {
-  effect(() => this.valueChange.emit(this.counter()));
+export class ListaProductos {
+  protected readonly svc = inject(ProductosService);
 }
 ```
 
-Como leemos `counter()` adentro del effect, cada vez que el counter cambie (por increment, reset, double), Angular vuelve a correr esta función y emite el nuevo valor. Es tipo `useEffect` de React si lo conocés.
+Equivalente al viejo:
 
-
-## Cómo se conectan padre e hijo en el template
-
-En `app.html`:
-
-```html
-<app-contador
-  label="Contador con signals"
-  (valueChange)="onCounterChange($event)">
-</app-contador>
-```
-
-- **`label="..."`** — property binding con un string estático. Si el valor viniera de un signal, usarías `[label]="miSignal()"` con corchetes.
-- **`(valueChange)="onCounterChange($event)"`** — event binding. `$event` es una variable especial del template: contiene lo que el hijo emitió (en nuestro caso, el número).
-
-En `app.ts`:
 ```ts
-onCounterChange(value: number) {
-  this.ultimoValorContador.set(value);
+export class ListaProductos {
+  constructor(private svc: ProductosService) {}
 }
 ```
 
-El handler recibe el valor y lo guarda en un signal del padre. Ese signal se muestra arriba en el `<p>`.
+Ambas siguen siendo válidas. En código nuevo se prefiere `inject()`.
+
+**Patrón "estado en servicio + signals"**
+
+El servicio contiene los signals. Los componentes los leen directamente en sus templates (`svc.productos()`) y actualizan llamando a métodos (`svc.agregar()`). Sin input/output para este tipo de datos compartidos.
+
+
+## Cuándo input/output vs cuándo servicio
+
+- **input/output**: comunicación entre componentes cercanos (padre-hijo) sobre estado local. Ejemplo: el contador y su emit al padre.
+- **Servicio**: estado compartido entre componentes que no tienen por qué conocerse. Ejemplo: la lista de productos que otros componentes (buscador, breadcrumb, carrito) también necesitarán.
+
+**Regla mental**: si dos componentes que no comparten padre directo necesitan la misma data, es un servicio.
 
 
 ## Verificaciones en el navegador
 
-1. Ves el contador exactamente como antes.
-2. Arriba del contador dice **"El contador está en X"** — ese número **cambia en tiempo real** cuando tocás los botones. Ese es el output funcionando.
-3. La lista de productos y sus botones siguen andando igual.
+1. Ves los 5 productos igual que antes.
+2. Los botones "+ Agregar" y "Vaciar" funcionan.
+3. El contador y su emit al padre siguen funcionando (no lo tocamos).
+4. La estructura es la misma; solo cambió de dónde sale la data.
 
 
 ## Preguntas de comprensión
 
-1. ¿Por qué el `label` es `readonly`? ¿Qué pasaría si en el hijo intentáramos `this.label.set('otro')`?
-2. Si en el template del padre escribís `[label]="'Hola'"` (con corchetes y comillas simples adentro) vs `label="Hola"` (sin corchetes), ¿es lo mismo? ¿En qué caso conviene usar cada forma?
-3. ¿Por qué el `output()` no es un signal? ¿Qué diferencia hay conceptualmente con un signal?
-4. Si borro el `effect()` del constructor del Contador, ¿la app rompe? ¿Qué deja de funcionar exactamente?
+1. ¿Qué significa `providedIn: 'root'` y por qué (casi) siempre lo vas a usar?
+2. `App` quedó sin las líneas de `productos`, `agregarProducto()` y `vaciarProductos()`. ¿Se rompió algo? ¿Por qué la app sigue funcionando exactamente igual?
+3. En `lista-productos.ts` usé `inject(ProductosService)` en vez del constructor. ¿Qué caso permite `inject()` que el constructor no?
+4. Si en otro componente (imaginate un `<app-buscador>`) hacés `inject(ProductosService)` y modificás el signal desde ahí, ¿qué le pasa a la vista de `<app-lista-productos>`?
 
 
-## Después de las preguntas: Fase 4b
+## Después de las preguntas: Fase 5b
 
-Vas a crear vos `<app-lista-productos>`:
+Vas a hacer vos:
 
-- Genera el componente con `ng generate component lista-productos --skip-tests`.
-- Mové el `<section class="productos">` del padre al hijo.
-- El hijo recibe **input** `productos: Producto[]` desde el padre.
-- El hijo emite **outputs**: `add` (cuando tocan +Agregar) y `clear` (cuando tocan Vaciar).
-- El padre queda como orquestador — es dueño del signal `productos` y tiene los handlers.
-
-Cuando hayas contestado las 4 preguntas, te doy los detalles paso a paso.
+1. En `ProductosService`, agregá un método `eliminar(id: number)` que saque de la lista el producto cuyo `id` coincida. Pista: `filter` + `set` sobre el signal.
+2. En `lista-productos.html`, dentro del `@for`, agregá un botón `×` al lado de cada producto que llame a `svc.eliminar(p.id)`.
+3. Verificá en el navegador: cada producto debería poder eliminarse individualmente, y al eliminar todos, aparecer el mensaje "No hay productos." (el `@empty` del `@for` ya está).

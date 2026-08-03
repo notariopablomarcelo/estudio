@@ -3,20 +3,14 @@
   <p>Bienvenido a Angular v22 con signals y standalone components.</p>
   <p>El contador está en <strong>{{ ultimoValorContador() }}</strong>.</p>
 
-  <!--
-    Usamos el componente hijo <app-contador>:
-    - `label="Contador con signals"` es una property binding (string estático).
-    - `(valueChange)="onCounterChange($event)"` es event binding — cada vez
-      que el hijo emite, corre este handler con el valor emitido en $event.
-  -->
   <app-contador
     label="Contador con signals"
     (valueChange)="onCounterChange($event)">
   </app-contador>
 
-  <app-lista-productos
-    [productos]="productos()"
-    (add)="agregarProducto()"
-    (clear)="vaciarProductos()">
-  </app-lista-productos>
+  <!--
+    <app-lista-productos> ya no recibe input ni emite output.
+    Consume el ProductosService directamente. El padre queda ajeno a los productos.
+  -->
+  <app-lista-productos></app-lista-productos>
 </main>
