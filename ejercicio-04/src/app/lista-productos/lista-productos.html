@@ -1,22 +1,30 @@
 <section class="productos">
   <h2>Productos</h2>
 
-  @if (svc.productos().length > 0) {
-    <p>Tenés {{ svc.productos().length }} producto(s).</p>
-  }
+  @if (svc.cargando()) {
+    <p class="estado">Cargando…</p>
+  } @else if (svc.error(); as err) {
+    <p class="estado error">{{ err }}</p>
+    <button (click)="svc.cargar()">Reintentar</button>
+  } @else {
+    @if (svc.productos().length > 0) {
+      <p>Tenés {{ svc.productos().length }} producto(s).</p>
+    }
 
-  @for (p of svc.productos(); track p.id) {
-    <div class="producto">
-      <strong>{{ p.name }}</strong> — ${{ p.price }}
-      <span>{{ p.stock }} en stock</span>
-      <button (click)="svc.eliminar(p.id)">Eliminar</button>
+    @for (p of svc.productos(); track p.id) {
+      <div class="producto">
+        <strong>{{ p.name }}</strong> — ${{ p.price }}
+        <span>{{ p.stock }} en stock</span>
+        <button (click)="svc.eliminar(p.id)">Eliminar</button>
+      </div>
+    } @empty {
+      <p>No hay productos.</p>
+    }
+
+    <div class="botones">
+      <button (click)="svc.cargar()">↻ Recargar desde API</button>
+      <button (click)="svc.agregar()">+ Agregar</button>
+      <button (click)="svc.vaciar()">Vaciar</button>
     </div>
-  } @empty {
-    <p>No hay productos.</p>
   }
-
-  <div class="botones">
-    <button (click)="svc.agregar()">+ Agregar</button>
-    <button (click)="svc.vaciar()">Vaciar</button>
-  </div>
 </section>

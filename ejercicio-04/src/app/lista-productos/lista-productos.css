@@ -1,0 +1,60 @@
+.productos {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.producto {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.producto:last-of-type {
+  border-bottom: none;
+}
+
+.producto span {
+  color: #666;
+  font-size: 0.9rem;
+  margin-left: auto;
+}
+
+.producto button {
+  margin-left: 0.5rem;
+}
+
+.estado {
+  color: #555;
+  font-style: italic;
+  padding: 1rem 0;
+}
+
+.estado.error {
+  color: #b91c1c;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 1px solid #999;
+  background: #fff;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #f3f3f3;
+}
