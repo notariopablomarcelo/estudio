@@ -7,7 +7,7 @@
     <p class="estado error">{{ err }}</p>
     <button (click)="svc.cargar()">Reintentar</button>
   } @else {
-    @if (svc.productos().length > 0) {
+    @if (productosFiltrados().length > 0) {
       <p>Tenés {{ productosFiltrados().length }} producto(s).</p>
     }
 
