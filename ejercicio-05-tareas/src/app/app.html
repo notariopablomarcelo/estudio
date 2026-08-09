@@ -1,7 +1,15 @@
 <input type="text" #inputTarea ><button (click)="agregar(inputTarea)">Agregar Tarea</button>
 
-@for(t of svc.tareas(); track t.id) {
-    <p [class.completada]="t.done" ><input type="checkbox" [checked]="t.done" (change)="svc.toggle(t.id)"/> {{ t.nombre }}</p>
+<p>
+    <input type="text" placeholder="Buscar..." #inputBuscar />
+    <button (click)="buscar(inputBuscar.value)" >Buscar</button>
+</p>
+
+@for(t of tareasFiltradas(); track t.id) {
+    <p [class.completada]="t.done" ><input type="checkbox" [checked]="t.done" (change)="svc.toggle(t.id)"/> 
+        {{ t.nombre }}
+        <button (click)="eliminar(t.id)" >Eliminar</button>
+    </p>
 } @empty { 
     <p>No hay tareas</p>
 }

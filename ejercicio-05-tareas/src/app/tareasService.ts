@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 
 interface Tarea {
     id: number,
@@ -10,6 +10,7 @@ interface Tarea {
     providedIn: 'root'
 })
 export class TareasService {
+
     readonly tareas = signal<Tarea[]>([]);
 
     agregar(t: Tarea) {
@@ -22,5 +23,9 @@ export class TareasService {
 
             return { ...t, done: !t.done };
         }));
+    }
+
+    eliminar(id: number) {
+        this.tareas.update(tareas => tareas.filter(t => t.id !== id ));
     }
 }
