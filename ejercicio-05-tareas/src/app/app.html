@@ -1,4 +1,4 @@
-<input type="text" #inputTarea ><button (click)="agregar(inputTarea.value)">Agregar Tarea</button>
+<input type="text" #inputTarea ><button (click)="agregar(inputTarea)">Agregar Tarea</button>
 
 @for(t of svc.tareas(); track t.id) {
     <p>{{ t.nombre }}</p>

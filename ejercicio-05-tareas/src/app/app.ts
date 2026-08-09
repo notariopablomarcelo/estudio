@@ -11,10 +11,17 @@ export class App {
   
   readonly svc = inject(TareasService);
   
-  agregar(nombre: string) {
+  agregar(input: HTMLInputElement) {
+    const value = input.value.trim();
+
+    if (value === '') return;
+
     this.svc.agregar({
-      id: 1,
-      nombre: nombre
+      id: Date.now(),
+      nombre: value,
+      done: false
     });
+
+    input.value = '';
   }
 }

@@ -2,7 +2,8 @@ import { Injectable, signal } from '@angular/core';
 
 interface Tarea {
     id: number,
-    nombre: string
+    nombre: string,
+    done: boolean
 }
 
 @Injectable({
