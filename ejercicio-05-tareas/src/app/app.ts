@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
+import { TareasService } from './tareasService';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,13 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('ejercicio-05-tareas');
+  
+  readonly svc = inject(TareasService);
+  
+  agregar(nombre: string) {
+    this.svc.agregar({
+      id: 1,
+      nombre: nombre
+    });
+  }
 }
