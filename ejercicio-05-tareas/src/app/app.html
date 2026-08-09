@@ -2,20 +2,20 @@
 
 <p>
     <input type="text" placeholder="Buscar..." #inputBuscar />
-    <button (click)="buscar(inputBuscar.value)" >Buscar</button>
+    <button (click)="buscarItem.set(inputBuscar.value)" >Buscar</button>
 </p>
 <p>
-    <button (click)="buscarPorEstado('todas')">Todas</button>
-    <button (click)="buscarPorEstado('completadas')">Completadas</button>
-    <button (click)="buscarPorEstado('pendientes')">Pendientes</button>
+    <button (click)="buscarItemEstado.set('todas')">Todas</button>
+    <button (click)="buscarItemEstado.set('completadas')">Completadas</button>
+    <button (click)="buscarItemEstado.set('pendientes')">Pendientes</button>
 </p>
 
 @for(t of tareasFiltradas(); track t.id) {
-    <p [class.completada]="t.done" ><input type="checkbox" [checked]="t.done" (change)="svc.toggle(t.id)"/> 
+    <p [class.completada]="t.done" >
+        <input type="checkbox" [checked]="t.done" (change)="svc.toggle(t.id)"/> 
         {{ t.nombre }}
+        <button (click)="eliminar(t.id)" >Eliminar</button>
     </p>
-    <button (click)="eliminar(t.id)" >Eliminar</button>
-
 } @empty { 
     <p>No hay tareas</p>
 }

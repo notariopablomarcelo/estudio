@@ -12,7 +12,7 @@ export class App {
   readonly svc = inject(TareasService);
 
   readonly buscarItem = signal('');
-  readonly buscarItemEstado = signal('todas');
+  readonly buscarItemEstado = signal<'todas' | 'completadas' | 'pendientes'>('todas');
 
   readonly tareasFiltradas = computed(() => {
     let tareas = this.svc.tareas();
@@ -45,13 +45,5 @@ export class App {
 
   eliminar(id: number) {
     this.svc.eliminar(id);
-  }
-
-  buscar(value: string) {
-    this.buscarItem.set(value);
-  }
-  
-  buscarPorEstado(value: string) {
-    this.buscarItemEstado.set(value);
   }
 }
