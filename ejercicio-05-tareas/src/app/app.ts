@@ -12,9 +12,21 @@ export class App {
   readonly svc = inject(TareasService);
 
   readonly buscarItem = signal('');
+  readonly buscarItemEstado = signal('todas');
 
   readonly tareasFiltradas = computed(() => {
-    return this.svc.tareas().filter(t => t.nombre.toLowerCase().includes(this.buscarItem().toLowerCase()));
+    let tareas = this.svc.tareas();
+
+    if (this.buscarItemEstado() !== 'todas'){
+      if (this.buscarItemEstado() === 'completadas') {
+        tareas = this.svc.tareas().filter(t => t.done);
+      }
+      if (this.buscarItemEstado() === 'pendientes') {
+        tareas = this.svc.tareas().filter(t => !t.done);
+      }
+    }
+
+    return tareas.filter(t => t.nombre.toLowerCase().includes(this.buscarItem().toLowerCase()));
   })
   
   agregar(input: HTMLInputElement) {
@@ -37,5 +49,9 @@ export class App {
 
   buscar(value: string) {
     this.buscarItem.set(value);
+  }
+  
+  buscarPorEstado(value: string) {
+    this.buscarItemEstado.set(value);
   }
 }
