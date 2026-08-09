@@ -15,19 +15,17 @@ export class App {
   readonly buscarItemEstado = signal<'todas' | 'completadas' | 'pendientes'>('todas');
 
   readonly tareasFiltradas = computed(() => {
-    let tareas = this.svc.tareas();
+    const todas = this.svc.tareas();
+    const estado = this.buscarItemEstado();
+    const texto = this.buscarItem().toLowerCase();
 
-    if (this.buscarItemEstado() !== 'todas'){
-      if (this.buscarItemEstado() === 'completadas') {
-        tareas = this.svc.tareas().filter(t => t.done);
-      }
-      if (this.buscarItemEstado() === 'pendientes') {
-        tareas = this.svc.tareas().filter(t => !t.done);
-      }
-    }
+    const porEstado = 
+      estado === 'completadas' ? todas.filter(t => t.done)
+      : estado === 'pendientes' ? todas.filter(t => !t.done)
+      : todas;
 
-    return tareas.filter(t => t.nombre.toLowerCase().includes(this.buscarItem().toLowerCase()));
-  })
+    return porEstado.filter(t => t.nombre.toLowerCase().includes(texto));
+  });
   
   agregar(input: HTMLInputElement) {
     const value = input.value.trim();
