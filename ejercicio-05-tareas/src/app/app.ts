@@ -13,6 +13,9 @@ export class App {
 
   readonly buscarItem = signal('');
   readonly buscarItemEstado = signal<'todas' | 'completadas' | 'pendientes'>('todas');
+  readonly pendientes = computed(() => {
+    return this.svc.tareas().filter(t => !t.done).length;
+  })
 
   readonly tareasFiltradas = computed(() => {
     const todas = this.svc.tareas();

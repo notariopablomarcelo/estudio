@@ -10,6 +10,8 @@
     <button (click)="buscarItemEstado.set('pendientes')">Pendientes</button>
 </p>
 
+<p>Pendientes: {{pendientes()}} tareas</p>
+
 @for(t of tareasFiltradas(); track t.id) {
     <p [class.completada]="t.done" >
         <input type="checkbox" [checked]="t.done" (change)="svc.toggle(t.id)"/> 
