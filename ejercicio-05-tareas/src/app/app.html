@@ -14,7 +14,7 @@
     <p [class.completada]="t.done" >
         <input type="checkbox" [checked]="t.done" (change)="svc.toggle(t.id)"/> 
         {{ t.nombre }}
-        <button (click)="eliminar(t.id)" >Eliminar</button>
+        <button (click)="svc.eliminar(t.id)" >Eliminar</button>
     </p>
 } @empty { 
     <p>No hay tareas</p>

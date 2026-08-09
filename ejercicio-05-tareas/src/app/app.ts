@@ -40,8 +40,4 @@ export class App {
 
     input.value = '';
   }
-
-  eliminar(id: number) {
-    this.svc.eliminar(id);
-  }
 }
