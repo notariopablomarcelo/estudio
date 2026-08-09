@@ -1,7 +1,7 @@
 <input type="text" #inputTarea ><button (click)="agregar(inputTarea)">Agregar Tarea</button>
 
 @for(t of svc.tareas(); track t.id) {
-    <p>{{ t.nombre }}</p>
+    <p [class.completada]="t.done" ><input type="checkbox" [checked]="t.done" (change)="svc.toggle(t.id)"/> {{ t.nombre }}</p>
 } @empty { 
     <p>No hay tareas</p>
 }

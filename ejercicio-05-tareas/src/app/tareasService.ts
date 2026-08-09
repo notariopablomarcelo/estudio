@@ -15,4 +15,12 @@ export class TareasService {
     agregar(t: Tarea) {
         this.tareas.update(tareas => [...tareas, t]);
     }
+
+    toggle(id: number) {
+        this.tareas.update(tareas => tareas.map(t => {
+            if (t.id !== id) return t;
+
+            return { ...t, done: !t.done };
+        }));
+    }
 }
