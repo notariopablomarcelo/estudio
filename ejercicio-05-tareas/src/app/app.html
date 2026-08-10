@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="agregar()">
     <input type="text" formControlName="nombre" >
-    <button type="submit">Agregar Tarea</button>
+    <button type="submit" [disabled]="form.invalid">Agregar Tarea</button>
 
     @if(form.controls.nombre.invalid && form.controls.nombre.touched) {
         @if(form.controls.nombre.errors?.['required']) {
