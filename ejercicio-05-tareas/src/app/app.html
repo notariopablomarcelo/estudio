@@ -1,4 +1,7 @@
-<input type="text" #inputTarea ><button (click)="agregar(inputTarea)">Agregar Tarea</button>
+<form (submit)="agregar(inputTarea)" action="#">
+    <input type="text" #inputTarea >
+    <button type="submit" >Agregar Tarea</button>
+</form>
 
 <p>
     <input type="text" placeholder="Buscar..." #inputBuscar />
@@ -12,12 +15,16 @@
 
 <p>Pendientes: {{svc.pendientes()}} tareas</p>
 
-@for(t of tareasFiltradas(); track t.id) {
-    <p [class.completada]="t.done" >
-        <input type="checkbox" [checked]="t.done" (change)="svc.toggle(t.id)"/> 
-        {{ t.nombre }}
-        <button (click)="svc.eliminar(t.id)" >Eliminar</button>
-    </p>
-} @empty { 
+@if ( tareasFiltradas().length === 0 ) {
     <p>No hay tareas</p>
+} @else {
+    <ul>
+        @for (t of tareasFiltradas(); track t.id) {
+            <li [class.completada]="t.done">
+                <input type="checkbox" [checked]="t.done" (change)="svc.toggle(t.id)"/> 
+                {{ t.nombre }}
+                <button (click)="svc.eliminar(t.id)" >Eliminar</button>
+            </li>
+        }
+    </ul>
 }
