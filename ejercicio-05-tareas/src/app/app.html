@@ -1,6 +1,19 @@
-<form (submit)="agregar(inputTarea)">
-    <input type="text" #inputTarea >
-    <button type="submit" >Agregar Tarea</button>
+<form [formGroup]="form" (ngSubmit)="agregar()">
+    <input type="text" formControlName="nombre" >
+    <button type="submit">Agregar Tarea</button>
+
+    @if(form.controls.nombre.invalid && form.controls.nombre.touched) {
+        @if(form.controls.nombre.errors?.['required']) {
+            <p>Requerido</p>
+        }
+        @if(form.controls.nombre.errors?.['minlength']) {
+            <p>Minimo 3 caracteres</p>
+        }
+        @if(form.controls.nombre.errors?.['maxlength']) {
+            <p>Máximo 20 caracteres</p>
+        }
+    }
+
 </form>
 
 <div class="filtroTexto">

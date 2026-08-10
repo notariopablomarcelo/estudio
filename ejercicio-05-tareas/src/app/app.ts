@@ -1,15 +1,21 @@
 import { Component, signal, inject, computed } from '@angular/core';
 import { TareasService } from './tareasService';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   
   readonly svc = inject(TareasService);
+  readonly fb = inject(FormBuilder);
+
+  form = this.fb.group({
+    nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]]
+  });
 
   readonly buscarItem = signal('');
   readonly buscarItemEstado = signal<'todas' | 'completadas' | 'pendientes'>('todas');
@@ -27,13 +33,15 @@ export class App {
     return porEstado.filter(t => t.nombre.toLowerCase().includes(texto));
   });
   
-  agregar(input: HTMLInputElement) {
-    const value = input.value.trim();
+  agregar() {
+    if (this.form.invalid) return;
+
+    const value = this.form.value['nombre']?.trim();
 
     if (!value) return;
 
     this.svc.agregar(value);
 
-    input.value = '';
+    this.form.reset();
   }
 }
