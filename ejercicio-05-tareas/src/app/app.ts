@@ -36,7 +36,7 @@ export class App {
   agregar() {
     if (this.form.invalid) return;
 
-    const value = this.form.value['nombre']?.trim();
+    const value = this.form.value.nombre?.trim();
 
     if (!value) return;
 
