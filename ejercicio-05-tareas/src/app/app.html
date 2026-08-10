@@ -3,15 +3,15 @@
     <button type="submit" >Agregar Tarea</button>
 </form>
 
-<p>
+<div class="filtroTexto">
     <input type="text" placeholder="Buscar..." #inputBuscar />
     <button (click)="buscarItem.set(inputBuscar.value)" >Buscar</button>
-</p>
-<p>
+</div>
+<div class="filtroEstado">
     <button (click)="buscarItemEstado.set('todas')">Todas</button>
     <button (click)="buscarItemEstado.set('completadas')">Completadas</button>
     <button (click)="buscarItemEstado.set('pendientes')">Pendientes</button>
-</p>
+</div>
 
 <p>Pendientes: {{svc.pendientes()}} tareas</p>
 
