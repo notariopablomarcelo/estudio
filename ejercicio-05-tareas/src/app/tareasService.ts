@@ -13,7 +13,16 @@ export class TareasService {
 
     readonly tareas = signal<Tarea[]>([]);
 
-    agregar(t: Tarea) {
+    readonly pendientes = computed(() => {
+        return this.tareas().filter(t => !t.done).length;
+    })
+
+    agregar(nombre: string) {
+        const t = {
+            id: Date.now(),
+            nombre: nombre,
+            done: false
+        }
         this.tareas.update(tareas => [...tareas, t]);
     }
 

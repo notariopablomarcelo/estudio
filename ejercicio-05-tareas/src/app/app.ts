@@ -13,9 +13,6 @@ export class App {
 
   readonly buscarItem = signal('');
   readonly buscarItemEstado = signal<'todas' | 'completadas' | 'pendientes'>('todas');
-  readonly pendientes = computed(() => {
-    return this.svc.tareas().filter(t => !t.done).length;
-  })
 
   readonly tareasFiltradas = computed(() => {
     const todas = this.svc.tareas();
@@ -35,11 +32,7 @@ export class App {
 
     if (!value) return;
 
-    this.svc.agregar({
-      id: Date.now(),
-      nombre: value,
-      done: false
-    });
+    this.svc.agregar(value);
 
     input.value = '';
   }
