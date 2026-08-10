@@ -11,7 +11,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 export class App {
   
   readonly svc = inject(TareasService);
-  readonly fb = inject(FormBuilder);
+  private readonly fb = inject(FormBuilder);
 
   form = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]]
